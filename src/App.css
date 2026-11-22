@@ -722,12 +722,22 @@ body {
   width: 100%;
 }
 
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100vh;
+  -webkit-text-size-adjust: 100%;
+}
+
 .guess-input {
   width: 100%;
   padding: 0.6rem 0.75rem;
   border: 2px solid #000000;
   border-radius: 0;
-  font-size: 16px;
+  font-family: inherit;
+  font-size: 16px !important;
+  line-height: 1.25;
   color: #000000;
   background-color: #ffffff;
   outline: none;

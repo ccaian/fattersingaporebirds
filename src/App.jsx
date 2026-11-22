@@ -40,6 +40,15 @@ function parseLocalStatus(localStatusRaw) {
   }
 }
 
+function normalizeName(str) {
+  if (!str || typeof str !== 'string') return ''
+  return str
+    .toLowerCase()
+    .replace(/[-–—]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
 function matchesStatusFilter(localStatusRaw, filters) {
   const parsed = parseLocalStatus(localStatusRaw)
   if (!parsed) return false
@@ -374,7 +383,7 @@ function App() {
   }
 
   const suggestions = useMemo(() => {
-    const query = guess.trim().toLowerCase()
+    const query = normalizeName(guess)
     if (!query) return []
 
     if (gameCategory === 'bird') {
@@ -384,18 +393,18 @@ function App() {
           primary: b.bird_name,
           secondary: null,
         }))
-        .filter((item) => item.primary.toLowerCase().includes(query))
+        .filter((item) => normalizeName(item.primary).includes(query))
         .slice(0, 8)
     }
 
     return snakes
       .filter((s) => {
         if (snakeNameMode === 'scientific') {
-          return s.scientific_name.toLowerCase().includes(query)
+          return normalizeName(s.scientific_name).includes(query)
         }
         return (
-          s.common_name.toLowerCase().includes(query) ||
-          s.scientific_name.toLowerCase().includes(query)
+          normalizeName(s.common_name).includes(query) ||
+          normalizeName(s.scientific_name).includes(query)
         )
       })
       .map((s) =>
@@ -416,15 +425,15 @@ function App() {
 
   const checkAnswer = (submittedText) => {
     if (!currentRound || roundResult) return
-    const cleaned = submittedText.trim().toLowerCase()
+    const cleaned = normalizeName(submittedText)
     if (!cleaned) return
 
     let isCorrect = false
     if (gameCategory === 'bird') {
-      isCorrect = cleaned === currentRound.bird.bird_name.toLowerCase()
+      isCorrect = cleaned === normalizeName(currentRound.bird.bird_name)
     } else {
-      const targetCommon = currentRound.snake.common_name.toLowerCase()
-      const targetSci = currentRound.snake.scientific_name.toLowerCase()
+      const targetCommon = normalizeName(currentRound.snake.common_name)
+      const targetSci = normalizeName(currentRound.snake.scientific_name)
       if (snakeNameMode === 'scientific') {
         isCorrect = cleaned === targetSci
       } else {
