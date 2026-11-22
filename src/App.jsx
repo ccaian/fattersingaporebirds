@@ -119,7 +119,7 @@ function App() {
   // Set full-screen pixel background image
   useEffect(() => {
     const bgUrl = `${import.meta.env.BASE_URL}background/pixel.png`
-    document.body.style.backgroundImage = `url("${bgUrl}")`
+    document.body.style.setProperty('--bg-image', `url("${bgUrl}")`)
   }, [])
 
   // Load birds.json

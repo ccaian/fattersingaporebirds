@@ -4,25 +4,44 @@
   padding: 0;
 }
 
+html {
+  background-color: white;
+  -webkit-text-size-adjust: 100%;
+}
+
 html,
 body,
 #root {
   width: 100%;
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 body {
-  background-color: #2e6f40;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-  background-attachment: fixed;
-  image-rendering: pixelated;
+  background-color: transparent;
   color: #000000;
   font-family: system-ui, -apple-system, sans-serif;
 }
 
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100lvh;
+  background-color: #2e6f40;
+  background-image: var(--bg-image);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  image-rendering: pixelated;
+  pointer-events: none;
+  z-index: 0;
+}
+
 #root {
+  position: relative;
+  z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -722,22 +741,12 @@ body {
   width: 100%;
 }
 
-html,
-body,
-#root {
-  width: 100%;
-  min-height: 100vh;
-  -webkit-text-size-adjust: 100%;
-}
-
 .guess-input {
   width: 100%;
   padding: 0.6rem 0.75rem;
   border: 2px solid #000000;
   border-radius: 0;
-  font-family: inherit;
-  font-size: 16px !important;
-  line-height: 1.25;
+  font-size: 16px;
   color: #000000;
   background-color: #ffffff;
   outline: none;
