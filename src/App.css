@@ -13,35 +13,21 @@ html,
 body,
 #root {
   width: 100%;
-  min-height: 100dvh;
+  min-height: 100vh;
 }
 
 body {
-  background-color: transparent;
+  background-color: white;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  image-rendering: pixelated;
   color: #000000;
   font-family: system-ui, -apple-system, sans-serif;
 }
 
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100lvh;
-  background-color: #2e6f40;
-  background-image: var(--bg-image);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-  image-rendering: pixelated;
-  pointer-events: none;
-  z-index: 0;
-}
-
 #root {
-  position: relative;
-  z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
