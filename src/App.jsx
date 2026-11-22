@@ -2,7 +2,7 @@ import './App.css'
 import { useState, useEffect, useMemo } from 'react'
 
 const ROUND_OPTIONS = [20, 50, 100, 'All']
-const RARITY_LEVELS = ['Common', 'Uncommon', 'Rare', 'Very Rare']
+const RARITY_LEVELS = ['Very Common', 'Common', 'Uncommon', 'Rare', 'Very Rare']
 
 // Returns { category, rarity } if local_status has valid data, or null if unmatched
 function parseLocalStatus(localStatusRaw) {
@@ -25,9 +25,11 @@ function parseLocalStatus(localStatusRaw) {
     rarity = 'Uncommon'
   } else if (status.includes('rare')) {
     rarity = 'Rare'
+  } else if (status.includes('very common')) {
+    rarity = 'Very Common'
   } else if (status.includes('common')) {
     rarity = 'Common'
-  }
+  } 
 
   if (!rarity) return null
 
@@ -55,8 +57,8 @@ function App() {
   // Game Settings State
   const [maxRounds, setMaxRounds] = useState(20) // 20 | 50 | 100 | 'All'
   const [statusFilters, setStatusFilters] = useState({
-    local: ['Common', 'Uncommon'],
-    migrant: ['Common', 'Uncommon'],
+    local: ['Very Common', 'Common'],
+    migrant: ['Very Common', 'Common'],
     vagrants: false,
   })
 
@@ -205,9 +207,9 @@ function App() {
       {screen === 'start' && (
         <>
           <div className="start-header">
-            <h2 className="start-title">Singapore Bird ID</h2>
+            <h2 className="start-title">BORB!</h2>
             <p className="start-subtitle">
-              Configure your expedition below ({birds.length} total species in database)
+              ({birds.length} total species in database)
             </p>
           </div>
 
