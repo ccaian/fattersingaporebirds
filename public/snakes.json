@@ -1,0 +1,1275 @@
+[
+  {
+    "scientific_name": "Acrochordus granulatus",
+    "common_name": "Little File Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Acrochordus javanicus",
+    "common_name": "Elephant's Trunk Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Ahaetulla fasciolata",
+    "common_name": "Speckle-Headed Whipsnake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Ahaetulla mycterizans",
+    "common_name": "Malayan Whipsnake",
+    "countries": [
+      "singapore"
+    ]
+  },
+  {
+    "scientific_name": "Ahaetulla prasina",
+    "common_name": "Oriental Whipsnake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Aipysurus eydouxii",
+    "common_name": "Stagger-Banded Sea Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Amphiesma stolatum",
+    "common_name": "Buff Striped Keelback",
+    "countries": [
+      "singapore"
+    ]
+  },
+  {
+    "scientific_name": "Anomochilus leonardi",
+    "common_name": "Leonard's Dwarf Pipe Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Anomochilus monticola",
+    "common_name": "Mountain Dwarf Pipe Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Anomochilus weberi",
+    "common_name": "Weber's Dwarf Pipe Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Aplopeltura boa",
+    "common_name": "Blunt-headed Snail-eating Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Argyrophis muelleri",
+    "common_name": "Müller's Blind Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Asthenodipsas laevis",
+    "common_name": "Smooth Snail-eating Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Asthenodipsas malaccanus",
+    "common_name": "Dark-necked Snail-eating Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Boiga cynodon",
+    "common_name": "Dog-Toothed Cat Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Boiga dendrophila",
+    "common_name": "Mangrove Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Boiga drapiezii",
+    "common_name": "Pale-spotted Cat Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Boiga jaspidea",
+    "common_name": "Jasper Cat Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Boiga melanota",
+    "common_name": "Western Mangrove Cat Snake",
+    "countries": [
+      "singapore"
+    ]
+  },
+  {
+    "scientific_name": "Boiga nigriceps",
+    "common_name": "Dark-headed Cat Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Bungarus fasciatus",
+    "common_name": "Banded Krait",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Bungarus flaviceps",
+    "common_name": "Red-headed Krait",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Calamaria battersbyi",
+    "common_name": "Battersby's Reed Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Calamaria bicolor",
+    "common_name": "Bi-coloured Reed Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Calamaria borneensis",
+    "common_name": "Bornean Reed Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Calamaria everetti",
+    "common_name": "Everett's Reed Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Calamaria grabowskyi",
+    "common_name": "Grabowsky's Reed Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Calamaria gracillima",
+    "common_name": "Slender Reed Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Calamaria griswoldi",
+    "common_name": "Yellow-lined Reed Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Calamaria hilleniusi",
+    "common_name": "Hillenius's Reed Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Calamaria lateralis",
+    "common_name": "Side-striped Reed Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Calamaria leucogaster",
+    "common_name": "Ring-tailed Reed Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Calamaria lovii",
+    "common_name": "Lowi's Reed Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Calamaria lumbricoidea",
+    "common_name": "Variable Reed Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Calamaria lumholtzi",
+    "common_name": "Red-headed Reed Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Calamaria melanota",
+    "common_name": "Dark Reed Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Calamaria prakkei",
+    "common_name": "Collared Reed Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Calamaria rebentischi",
+    "common_name": "Long-tailed Reed Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Calamaria schlegeli",
+    "common_name": "Pink-Headed Reed Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Calamaria schmidti",
+    "common_name": "Schmidt's Reed Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Calamaria suluensis",
+    "common_name": "Lesser Reed Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Calamaria virgulata",
+    "common_name": "Striped Reed Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Calliophis bivirgatus",
+    "common_name": "Blue Malaysian Coralsnake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Calliophis intestinalis",
+    "common_name": "Banded Malaysian Coralsnake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Cantoria violacea",
+    "common_name": "Cantor's Mangrove Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Cerberus rynchops",
+    "common_name": "Dog-faced Water Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+
+  {
+    "scientific_name": "Chrysopelea ornata",
+    "common_name": "Golden Tree Snake",
+    "countries": [
+      "singapore"
+    ]
+  },
+  {
+    "scientific_name": "Chrysopelea paradisi",
+    "common_name": "Paradise Flying Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Chrysopelea pelias",
+    "common_name": "Banded Flying Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Coelognathus flavolineatus",
+    "common_name": "Black Copper Rat Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Coelognathus philippinus",
+    "common_name": "Philippine Red-tailed Racer",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Coelognathus radiatus",
+    "common_name": "Copperhead Racer",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Cylindrophis engkariensis",
+    "common_name": "Engkari Pipe Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Cylindrophis lineatus",
+    "common_name": "Striped Pipe Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Cylindrophis ruffus",
+    "common_name": "Red Cylinder Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Dendrelaphis caudolineatus",
+    "common_name": "Striped Bronzeback",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Dendrelaphis cyanochloris",
+    "common_name": "Blue Bronzeback",
+    "countries": [
+      "singapore"
+    ]
+  },
+  {
+    "scientific_name": "Dendrelaphis formosus",
+    "common_name": "Elegant Bronzeback",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Dendrelaphis haasi",
+    "common_name": "Haas's Bronzeback",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Dendrelaphis kopsteini",
+    "common_name": "Kopstein's Bronzeback",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Dendrelaphis pictus",
+    "common_name": "Painted Bronzeback",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Dendrelaphis striatus",
+    "common_name": "Barred Bronzeback",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Dryophiops rubescens",
+    "common_name": "Brown Whip Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Elaphe taeniura",
+    "common_name": "Cave Racer",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Elapoidis fuscus",
+    "common_name": "Sunda Mountain Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Enhydris enhydris",
+    "common_name": "Rainbow Mud Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Fordonia leucobalia",
+    "common_name": "White-Bellied Mangrove Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Gerarda prevostiana",
+    "common_name": "Cat-Eyed Fishing Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Gongylosoma baliodeira",
+    "common_name": "Orange-Bellied Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Gongylosoma longicauda",
+    "common_name": "Five-striped Ground Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Gonyosoma margaritatum",
+    "common_name": "Royal Tree Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Gonyosoma oxycephalum",
+    "common_name": "Red-Tailed Green Ratsnake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Hebius arquus",
+    "common_name": "Arch-lipped Keelback",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Hebius flavifrons",
+    "common_name": "White-bellied Keelback",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Hebius frenatus",
+    "common_name": "Bridled Keelback",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Hebius petersii",
+    "common_name": "Yellow-lipped Water Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Hebius sarawacensis",
+    "common_name": "Checker-bellied Keelback",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Homalophis doriae",
+    "common_name": "Big-headed Mud Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Homalophis gyii",
+    "common_name": "Kapuas Mud Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Homalopsis buccata",
+    "common_name": "Puff-Faced Water Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Hydrablabes periops",
+    "common_name": "Spectacled Water Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Hydrablabes praefrontalis",
+    "common_name": "Kinabalu Water Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Hydrophis aagaardi",
+    "common_name": "Aagaard's Sea Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Hydrophis annandalei",
+    "common_name": "Annandale's Sea Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Hydrophis anomalus",
+    "common_name": "Anomalous Sea Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Hydrophis atriceps",
+    "common_name": "Blunt-banded Sea Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Hydrophis belcheri",
+    "common_name": "Belcher's Sea Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Hydrophis brookii",
+    "common_name": "Brooke's Sea Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Hydrophis caerulescens",
+    "common_name": "Blue-grey Sea Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Hydrophis curtus",
+    "common_name": "Spine-Bellied Sea Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Hydrophis cyanocinctus",
+    "common_name": "Annulated Sea Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Hydrophis fasciatus",
+    "common_name": "Banded Sea Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Hydrophis gracilis",
+    "common_name": "Narrow-headed Sea Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Hydrophis klossi",
+    "common_name": "Greater Dusky Sea Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Hydrophis melanosoma",
+    "common_name": "Lesser Dusky Sea Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Hydrophis ornatus",
+    "common_name": "Ornate Sea Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Hydrophis platurus",
+    "common_name": "Yellow-bellied Sea Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Hydrophis schistosus",
+    "common_name": "Beaked Sea Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Hydrophis sibauensis",
+    "common_name": "Kapuas Sea Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Hydrophis spiralis",
+    "common_name": "Yellow Sea Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Hydrophis stokesii",
+    "common_name": "Stokes's Sea Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Hydrophis torquatus",
+    "common_name": "Wreathed Sea Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Hydrophis viperinus",
+    "common_name": "Grey Sea Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Hypsiscopus plumbea",
+    "common_name": "Orange-bellied Mud Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Indotyphlops braminus",
+    "common_name": "Brahminy Blindsnake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Kerilia jerdoni",
+    "common_name": "Saddle-backed Sea Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Laticauda colubrina",
+    "common_name": "Yellow-Lipped Sea Krait",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Laticauda laticaudata",
+    "common_name": "Large-scaled Sea Krait",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Lepturophis albofuscus",
+    "common_name": "Slender-tailed Wolf Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Liopeltis tricolor",
+    "common_name": "Masked Ground Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Lycodon capucinus",
+    "common_name": "Common Wolf Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Lycodon effraenis",
+    "common_name": "Brown Wolf Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Lycodon subannulatus",
+    "common_name": "Saddle-backed Dwarf Treesnake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Lycodon subcinctus",
+    "common_name": "Malayan Banded Wolf Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Lycodon tristigatus",
+    "common_name": "Striped Dwarf Treesnake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Malayopython reticulatus",
+    "common_name": "Reticulated Python",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Miralia alternans",
+    "common_name": "Yellow-banded Mud Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Naja sumatrana",
+    "common_name": "Equatorial Spitting Cobra",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Oligodon annulifer",
+    "common_name": "Ring-spotted Kukri Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Oligodon everetti",
+    "common_name": "Jeweled Kukri Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Oligodon meyerinkii",
+    "common_name": "Meyerink's Kukri Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Oligodon octolineatus",
+    "common_name": "Eight-Striped Kukri Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Oligodon purpurascens",
+    "common_name": "Brown Kukri Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Oligodon signatus",
+    "common_name": "Barred Kukri Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Oligodon vertebralis",
+    "common_name": "Dark-spined Kukri Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Ophiophagus bungarus",
+    "common_name": "Sunda King Cobra",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Opisthotropis typica",
+    "common_name": "Dwarf Water Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Oreocalamus hanitschi",
+    "common_name": "Mountain Reed Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Paraxenodermus borneensis",
+    "common_name": "Stoliczka's Rough-backed Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Pareas carinatus",
+    "common_name": "Keeled Slug-eating Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Pareas margaritophorus",
+    "common_name": "White-Spotted Slug Snake",
+    "countries": [
+      "singapore"
+    ]
+  },
+  {
+    "scientific_name": "Pareas nuchalis",
+    "common_name": "Barred Snail-eating Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Phytolopsis punctata",
+    "common_name": "Spotted Mud Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Psammodynastes pictus",
+    "common_name": "Painted Mock Viper",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Psammodynastes pulverulentus",
+    "common_name": "Common Mock Viper",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Pseudorabdion albonuchalis",
+    "common_name": "Ring-necked Litter Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Pseudorabdion collaris",
+    "common_name": "Mocquard's Litter Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Pseudorabdion longiceps",
+    "common_name": "Cantor's Dwarf Reed Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Pseudorabdion saravacense",
+    "common_name": "Sarawak Litter Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Pseudoxenodon baramensis",
+    "common_name": "Baram Water Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Ptyas carinata",
+    "common_name": "Keeled Rat Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Ptyas fusca",
+    "common_name": "Brown Rat Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Ptyas korros",
+    "common_name": "Indo-Chinese Rat Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Python breitensteini",
+    "common_name": "Borneo Blood Python",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Raclitia indica",
+    "common_name": "Selangor Mud Snake",
+    "countries": [
+      "singapore"
+    ]
+  },
+  {
+    "scientific_name": "Ramphotyphlops lineatus",
+    "common_name": "Striped Blind Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Ramphotyphlops lorenzi",
+    "common_name": "Miang Island Blind Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Ramphotyphlops olivaceus",
+    "common_name": "Keel-nosed Blind Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Rhabdophis chrysargos",
+    "common_name": "Speckle-bellied Keelback",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Rhabdophis conspicillatus",
+    "common_name": "Red-bellied Keelback",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Rhabdophis flaviceps",
+    "common_name": "Orange-lipped Water Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Rhabdophis murudensis",
+    "common_name": "Fire-lipped Keelback",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Rhabdophis rhodomelas",
+    "common_name": "Blue-necked Water Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Rhabdophis subminiatus",
+    "common_name": "Red-necked Keelback",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Sibynophis geminatus",
+    "common_name": "Striped Dark-headed Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Sibynophis melanocephalus",
+    "common_name": "Black-Headed Collared Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Stegonotus borneensis",
+    "common_name": "Bornean Black Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Trimeresurus borneensis",
+    "common_name": "Bornean Leaf-nosed Pit-viper",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Trimeresurus chaseni",
+    "common_name": "Kinabalu Brown Pit-viper",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Trimeresurus malcolmi",
+    "common_name": "Smith's Mountain Pit-viper",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Trimeresurus purpureomaculatus",
+    "common_name": "Mangrove Viper",
+    "countries": [
+      "singapore"
+    ]
+  },
+  {
+    "scientific_name": "Trimeresurus sabahi",
+    "common_name": "Sabah Pit-viper",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Trimeresurus sumatranus",
+    "common_name": "Sumatran Pit Viper",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Tropidolaemus subannulatus",
+    "common_name": "Keeled Pit-viper",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Tropidolaemus wagleri",
+    "common_name": "Wagler's Pit Viper",
+    "countries": [
+      "singapore"
+    ]
+  },
+  {
+    "scientific_name": "Typhlops koekkoeki",
+    "common_name": "Bunju Island Blind Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Xenelaphis ellipsifer",
+    "common_name": "Ornate Brown Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Xenelaphis hexagonotus",
+    "common_name": "Malaysian Brown Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Xenochrophis maculatus",
+    "common_name": "Spotted Keelback",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Xenochrophis trianguligerus",
+    "common_name": "Triangle Keelback",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Xenochrophis vittatus",
+    "common_name": "Striped Keelback",
+    "countries": [
+      "singapore"
+    ]
+  },
+  {
+    "scientific_name": "Xenodermus javanicus",
+    "common_name": "Dragon Snake",
+    "countries": [
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Xenopeltis unicolor",
+    "common_name": "Asian Sunbeam Snake",
+    "countries": [
+      "singapore",
+      "borneo"
+    ]
+  },
+  {
+    "scientific_name": "Xenophidion acanthognathus",
+    "common_name": "Bornean Spine-jawed Snake",
+    "countries": [
+      "borneo"
+    ]
+  }
+]

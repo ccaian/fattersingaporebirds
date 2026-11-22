@@ -13,6 +13,11 @@ body,
 
 body {
   background-color: #2e6f40;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  image-rendering: pixelated;
   color: #000000;
   font-family: system-ui, -apple-system, sans-serif;
 }
@@ -25,13 +30,98 @@ body {
   padding: 1.5rem;
 }
 
+/* --- START SCREEN MASCOT SELECTOR BAR --- */
+
+.start-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 92vw;
+  max-width: 760px;
+}
+
+.mode-selector-bar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 1.5rem;
+  margin-bottom: 0.65rem;
+  padding: 0 0.5rem;
+}
+
+.mode-mascot-btn {
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
+    filter 0.2s ease;
+}
+
+.mode-mascot-btn:focus,
+.mode-mascot-btn:focus-visible {
+  outline: none;
+}
+
+.mode-mascot-img {
+  width: 84px;
+  height: 84px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  display: block;
+}
+
+.mode-mascot-btn--bird:hover,
+.mode-mascot-btn--bird.mode-mascot-btn--active {
+  transform: rotate(-20deg) scale(1.06);
+  filter: drop-shadow(0 0 10px rgba(255, 255, 0, 0.95))
+    drop-shadow(0 0 22px rgba(255, 230, 0, 0.65));
+}
+
+.mode-mascot-btn--snake:hover,
+.mode-mascot-btn--snake.mode-mascot-btn--active {
+  transform: rotate(20deg) scale(1.06);
+  filter: drop-shadow(0 0 10px rgba(255, 255, 0, 0.95))
+    drop-shadow(0 0 22px rgba(255, 230, 0, 0.65));
+}
+
+.mode-pixel-label-slot {
+  min-width: 170px;
+  height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mode-pixel-title {
+  font-family: 'Press Start 2P', ui-monospace, monospace;
+  font-size: 1.65rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #1c1917;
+  background-color: rgba(255, 255, 255, 0.92);
+  border: 2px solid #000000;
+  box-shadow: 4px 4px 0px #000000;
+  padding: 0.55rem 0.9rem;
+  text-shadow: 3px 3px 0px #c2594b;
+  user-select: none;
+}
+
+/* --- MAIN GAME CARD --- */
+
 .game-card {
   --base-width: 92vw;
   --base-max-width: 760px;
 
   background-color: #ffffff;
   color: #000000;
-  width: var(--base-width);
+  width: 100%;
   max-width: var(--base-max-width);
   min-height: 430px;
   border: 2px solid #000000;
@@ -141,6 +231,11 @@ body {
   box-shadow: 3px 3px 0px #000000;
 }
 
+.choice-tile--compact {
+  font-size: 0.78rem;
+  padding: 0.45rem 0.5rem;
+}
+
 .status-columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -216,6 +311,14 @@ body {
   gap: 0.45rem;
 }
 
+/* Snake settings */
+
+.snake-name-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
 /* --- PLAYING SCREEN LAYOUT --- */
 
 .play-header {
@@ -275,7 +378,6 @@ body {
 
 .header-title {
   font-size: 1rem;
-  font-weight: 800;
   color: #000000;
   margin-top: 0.1rem;
 }
@@ -313,6 +415,7 @@ body {
 }
 
 /* Middle Photo Box */
+
 .photo-box {
   width: 100%;
   flex: 1;
@@ -325,6 +428,10 @@ body {
   align-items: center;
   overflow: hidden;
   position: relative;
+}
+
+.photo-box--loading {
+  background-color: #ffffff;
 }
 
 .photo-backdrop {
@@ -349,7 +456,34 @@ body {
   display: block;
 }
 
+.loading-video-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+}
+
+.loading-video {
+  width: 110px;
+  height: auto;
+  display: block;
+  pointer-events: none;
+}
+
+.loading-indicator {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.75);
+  border: 2px solid #ffffff;
+  padding: 0.6rem 1rem;
+}
+
 /* Monochrome Theme-Consistent Answer Reveal Box */
+
 .reveal-banner {
   position: absolute;
   bottom: 0.65rem;
@@ -401,7 +535,6 @@ body {
 }
 
 .reveal-bird-name {
-  font-weight: 800;
   font-size: 0.92rem;
 }
 
@@ -423,6 +556,25 @@ body {
   background-color: #f1f5f9;
   border: 1px solid #000000;
   padding: 0.1rem 0.35rem;
+}
+
+.reveal-meta-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.3rem;
+}
+
+.reveal-meta-row .reveal-local-status {
+  margin-top: 0;
+}
+
+.reveal-credit {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.68rem;
+  color: #475569;
+  font-weight: 600;
 }
 
 .info-icon-btn {
@@ -447,6 +599,7 @@ body {
 }
 
 /* Identification Field Guide Modal Pop-up */
+
 .id-modal-backdrop {
   position: absolute;
   inset: 0;
@@ -512,13 +665,47 @@ body {
 .id-modal-meta {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-size: 0.8rem;
-  font-weight: 800;
   margin-bottom: 0.5rem;
   padding-bottom: 0.4rem;
   border-bottom: 1px solid #cbd5e1;
 }
 
+.snake-modal-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  margin-bottom: 0.65rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px dashed #94a3b8;
+}
+
+.snake-wiki-summary {
+  font-size: 0.83rem;
+  line-height: 1.45;
+  color: #1e293b;
+}
+
+.inat-link {
+  display: inline-block;
+  margin-top: 0.65rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #000000;
+  background-color: #ffff00;
+  border: 1.5px solid #000000;
+  padding: 0.25rem 0.5rem;
+  text-decoration: none;
+}
+
+.inat-link:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+
 /* Bottom Controls Box & Autocomplete */
+
 .controls-box {
   width: 100%;
   border: 2px solid #000000;
@@ -583,6 +770,13 @@ body {
   font-weight: 700;
 }
 
+/* Keep scientific name softer even when the yellow autocomplete row is highlighted */
+.autocomplete-item:hover .species-sci-name,
+.autocomplete-item--active .species-sci-name {
+  font-weight: 400;
+  color: #334155;
+}
+
 .controls-buttons {
   display: flex;
   justify-content: center;
@@ -609,10 +803,61 @@ body {
   cursor: not-allowed;
 }
 
+/* Dual Common + Scientific Name Styling Across Header, Reveal Banner, Modal & Autocomplete */
+.dual-name-inline {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.45rem;
+}
+
+.species-common-name {
+  font-weight: 700;
+}
+
+.species-sci-name {
+  font-weight: 400;
+  font-style: italic;
+  opacity: 0.78;
+}
+
+/* Ensure single-name scientific mode also italicizes cleanly */
+.header-title,
+.reveal-bird-name,
+.id-modal-meta {
+  font-weight: 700;
+}
+
 /* --- RESPONSIVE MOBILE / NARROW SCREEN ADJUSTMENTS --- */
+
 @media (max-width: 640px) {
   #root {
     padding: 0.5rem;
+  }
+
+  .start-stage {
+    width: 96vw;
+  }
+
+  .mode-selector-bar {
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .mode-mascot-img {
+    width: 62px;
+    height: 62px;
+  }
+
+  .mode-pixel-label-slot {
+    min-width: 125px;
+    height: 62px;
+  }
+
+  .mode-pixel-title {
+    font-size: 1.1rem;
+    padding: 0.45rem 0.65rem;
+    text-shadow: 2px 2px 0px #c2594b;
   }
 
   .game-card {
@@ -626,7 +871,6 @@ body {
     margin: 0.75rem 0;
   }
 
-  /* Give the playing card almost full screen width on narrow screens */
   .game-card--playing {
     width: 95vw;
     max-width: 95vw;
