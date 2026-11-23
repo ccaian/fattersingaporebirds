@@ -7,6 +7,30 @@ const PLACE_IDS = {
   borneo: ['7319', '7045', '7145', '7237'], // Sabah, Sarawak, Kalimantan, Brunei
 }
 
+// Keywords indicating dead/roadkill specimens or multi-species predation scenes
+const EXCLUDED_KEYWORDS = [
+  'roadkill',
+  'road kill',
+  'dor',
+  'dead on road',
+  'dead',
+  'carcass',
+  'flattened',
+  'run over',
+  'ran over',
+  'squashed',
+  'predation',
+  'eating',
+  'swallowing',
+  'feeding on',
+  'prey',
+]
+
+const KEYWORD_REGEX = new RegExp(
+  `\\b(${EXCLUDED_KEYWORDS.map((k) => k.replace(/\s+/g, '\\s+')).join('|')})\\b`,
+  'i'
+)
+
 function buildPlaceIdParam(regions) {
   const ids = []
   if (regions?.singapore) ids.push(...PLACE_IDS.singapore)
@@ -14,12 +38,50 @@ function buildPlaceIdParam(regions) {
   return ids.join(',')
 }
 
+function isLiveSingleSpecimen(obs) {
+  // 1. Reject any observation annotated as Dead (term_id = 17, term_value_id = 19)
+  //    or Cannot Be Determined (term_value_id = 20)
+  if (Array.isArray(obs.annotations)) {
+    const isDeadOrUnknown = obs.annotations.some(
+      (ann) =>
+        ann.controlled_attribute_id === 17 &&
+        (ann.controlled_value_id === 19 || ann.controlled_value_id === 20)
+    )
+    if (isDeadOrUnknown) return false
+  }
+
+  // 2. Reject observations whose description, tags, observation fields, or comments
+  //    mention roadkill/dead/predation keywords
+  const textParts = []
+  if (obs.description) textParts.push(obs.description)
+  if (Array.isArray(obs.tags)) textParts.push(...obs.tags)
+  if (Array.isArray(obs.comments)) {
+    for (const c of obs.comments) {
+      if (c?.body) textParts.push(c.body)
+    }
+  }
+  if (Array.isArray(obs.ofvs)) {
+    for (const field of obs.ofvs) {
+      if (field?.name) textParts.push(field.name)
+      if (field?.value) textParts.push(String(field.value))
+    }
+  }
+
+  const combinedText = textParts.join(' ')
+  if (combinedText && KEYWORD_REGEX.test(combinedText)) {
+    return false
+  }
+
+  return true
+}
+
 async function queryObservations(sciName, placeIdParam) {
   const params = new URLSearchParams({
     taxon_name: sciName,
     quality_grade: 'research',
     photos: 'true',
-    per_page: '10',
+    without_term_value_id: '19', // Exclude observations explicitly annotated as Dead
+    per_page: '20',
     order_by: 'votes',
     order: 'desc',
   })
@@ -36,14 +98,20 @@ async function queryObservations(sciName, placeIdParam) {
   }
 
   const data = await res.json()
-  return (data.results || []).filter(
+  const withPhotos = (data.results || []).filter(
     (obs) => obs.photos && obs.photos.length > 0
   )
+
+  const liveFiltered = withPhotos.filter(isLiveSingleSpecimen)
+
+  // Fall back to unfiltered results only if filtering leaves 0 candidates
+  return liveFiltered.length > 0 ? liveFiltered : withPhotos
 }
 
 /**
  * Fetch a random Research Grade, top-voted observation photo for a snake,
- * filtered by selected regions (Singapore / Borneo) with a global fallback.
+ * filtered by selected regions (Singapore / Borneo) and excluding dead/roadkill/predation
+ * observations, with a global fallback.
  */
 export async function fetchSnakeRoundData(
   snake,

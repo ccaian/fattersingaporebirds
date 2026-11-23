@@ -46,13 +46,6 @@
     ]
   },
   {
-    "scientific_name": "Amphiesma stolatum",
-    "common_name": "Buff Striped Keelback",
-    "countries": [
-      "singapore"
-    ]
-  },
-  {
     "scientific_name": "Anomochilus leonardi",
     "common_name": "Leonard's Dwarf Pipe Snake",
     "countries": [
@@ -232,8 +225,8 @@
     ]
   },
   {
-    "scientific_name": "Calamaria lovii",
-    "common_name": "Lowi's Reed Snake",
+    "scientific_name": "Calamaria lovii ssp. gimletti",
+    "common_name": "Gimlett's Reed Snake",
     "countries": [
       "singapore",
       "borneo"
@@ -556,7 +549,7 @@
   },
   {
     "scientific_name": "Hebius petersii",
-    "common_name": "Yellow-lipped Water Snake",
+    "common_name": "Peters' Keelback",
     "countries": [
       "singapore",
       "borneo"
@@ -821,7 +814,7 @@
   },
   {
     "scientific_name": "Lycodon subannulatus",
-    "common_name": "Saddle-backed Dwarf Treesnake",
+    "common_name": "Malayan Bridal Snake",
     "countries": [
       "singapore",
       "borneo"
