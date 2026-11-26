@@ -108,6 +108,7 @@ function App() {
   // Startup Pre-warm Buffer (holds up to 2 ready-to-play snake rounds before game starts)
   const prewarmBufferRef = useRef([])
   const isPrewarmingRef = useRef(false)
+  const prewarmGenRef = useRef(0)
 
   // Guessing, Autocomplete & Identification Pop-up State
   const [guess, setGuess] = useState('')
@@ -182,10 +183,25 @@ function App() {
     })
   }, [snakes, snakeRegions])
 
-  // Preload up to 2 snake photos in the background as soon as the website loads
+  const activeRegionKey = `${snakeRegions.singapore ? 'sg' : ''}-${
+    snakeRegions.borneo ? 'bo' : ''
+  }`
+
+  // Preload up to 2 snake photos in the background matching current region selection
   const topUpStartupSnakeBuffer = useCallback(async () => {
     if (isPrewarmingRef.current || filteredSnakes.length === 0) return
+
+    // Discard any stale buffered snakes from a previous region toggle
+    prewarmBufferRef.current = prewarmBufferRef.current.filter(
+      (entry) => entry.regionKey === activeRegionKey
+    )
+
     if (prewarmBufferRef.current.length >= SNAKE_BUFFER_SIZE) return
+
+    const generation = prewarmGenRef.current
+    const snapshotRegions = { ...snakeRegions }
+    const snapshotPool = [...filteredSnakes]
+    const snapshotKey = activeRegionKey
 
     isPrewarmingRef.current = true
     try {
@@ -194,28 +210,56 @@ function App() {
         prewarmBufferRef.current.length < SNAKE_BUFFER_SIZE &&
         attempts < 8
       ) {
+        // Abort immediately if the user toggled regions while fetching
+        if (prewarmGenRef.current !== generation) return
+
         attempts += 1
         const usedNames = new Set(
           prewarmBufferRef.current.map((item) => item.snake.scientific_name)
         )
-        const candidates = filteredSnakes.filter(
+        const candidates = snapshotPool.filter(
           (s) => !usedNames.has(s.scientific_name)
         )
-        const pool = candidates.length > 0 ? candidates : filteredSnakes
+        const pool = candidates.length > 0 ? candidates : snapshotPool
         const randomSnake = pool[Math.floor(Math.random() * pool.length)]
 
-        const data = await fetchSnakeRoundData(randomSnake, snakeRegions)
+        const data = await fetchSnakeRoundData(randomSnake, snapshotRegions)
+
+        // Check again after await before pushing into buffer
+        if (prewarmGenRef.current !== generation) return
+
         if (data && data.photoUrl) {
           await preloadImageUrl(data.photoUrl)
-          prewarmBufferRef.current.push({ snake: randomSnake, data })
+          if (prewarmGenRef.current !== generation) return
+          prewarmBufferRef.current.push({
+            snake: randomSnake,
+            data,
+            regionKey: snapshotKey,
+          })
         }
       }
     } catch (err) {
       console.error('Background snake prewarm failed:', err)
     } finally {
       isPrewarmingRef.current = false
+      // If user toggled regions mid-fetch, kick off a fresh buffer load for the new selection
+      if (prewarmGenRef.current !== generation) {
+        topUpStartupSnakeBuffer()
+      }
     }
-  }, [filteredSnakes])
+  }, [filteredSnakes, snakeRegions, activeRegionKey])
+
+  useEffect(() => {
+    // Increment generation on every region/filter change to cancel stale in-flight prewarms
+    prewarmGenRef.current += 1
+    prewarmBufferRef.current = prewarmBufferRef.current.filter(
+      (entry) => entry.regionKey === activeRegionKey
+    )
+
+    if (screen === 'start' && filteredSnakes.length > 0) {
+      topUpStartupSnakeBuffer()
+    }
+  }, [screen, filteredSnakes, activeRegionKey, topUpStartupSnakeBuffer])
 
   useEffect(() => {
     if (screen === 'start' && filteredSnakes.length > 0) {
@@ -240,27 +284,30 @@ function App() {
   }
 
   // Fetch & preload snake iNaturalist photo for a specific queue index
-  const ensureSnakeRoundLoaded = useCallback(async (queue, idx) => {
-    if (idx >= queue.length) return
-    if (fetchingIndicesRef.current.has(idx)) return
+  const ensureSnakeRoundLoaded = useCallback(
+    async (queue, idx) => {
+      if (idx >= queue.length) return
+      if (fetchingIndicesRef.current.has(idx)) return
 
-    fetchingIndicesRef.current.add(idx)
+      fetchingIndicesRef.current.add(idx)
 
-    try {
-      const data = await fetchSnakeRoundData(queue[idx].snake, snakeRegions)
-      if (data && data.photoUrl) {
-        await preloadImageUrl(data.photoUrl)
-        setSnakeMediaMap((prev) => ({ ...prev, [idx]: data }))
-      } else {
+      try {
+        const data = await fetchSnakeRoundData(queue[idx].snake, snakeRegions)
+        if (data && data.photoUrl) {
+          await preloadImageUrl(data.photoUrl)
+          setSnakeMediaMap((prev) => ({ ...prev, [idx]: data }))
+        } else {
+          setSnakeMediaMap((prev) => ({ ...prev, [idx]: 'empty' }))
+        }
+      } catch (err) {
+        console.error('Snake photo fetch failed:', err)
         setSnakeMediaMap((prev) => ({ ...prev, [idx]: 'empty' }))
+      } finally {
+        fetchingIndicesRef.current.delete(idx)
       }
-    } catch (err) {
-      console.error('Snake photo fetch failed:', err)
-      setSnakeMediaMap((prev) => ({ ...prev, [idx]: 'empty' }))
-    } finally {
-      fetchingIndicesRef.current.delete(idx)
-    }
-  }, [])
+    },
+    [snakeRegions]
+  )
 
   // Rolling 2-snake lookahead cache while playing:
   // Keeps currentIndex + 1 and currentIndex + 2 preloaded as the user thinks
@@ -323,8 +370,13 @@ function App() {
           ? filteredSnakes.length
           : Math.min(maxRounds, filteredSnakes.length)
 
-      // Consume up to 2 pre-warmed snakes from startup buffer first
-      const warmedEntries = prewarmBufferRef.current.splice(
+      // Only consume pre-warmed snakes that match the active region selection
+      const matchingWarmed = prewarmBufferRef.current.filter(
+        (item) => item.regionKey === activeRegionKey
+      )
+      prewarmBufferRef.current = []
+
+      const warmedEntries = matchingWarmed.slice(
         0,
         Math.min(SNAKE_BUFFER_SIZE, targetCount)
       )
