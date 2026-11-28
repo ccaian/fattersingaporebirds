@@ -1,6 +1,10 @@
 import './App.css'
 import { useState, useEffect, useMemo, useRef, useCallback } from 'react'
-import { fetchSnakeRoundData } from './utils/inaturalist'
+import {
+  fetchSnakeRoundData,
+  loadBlacklist,
+  addToBlacklist,
+} from './utils/inaturalist'
 
 const ROUND_OPTIONS = [20, 50, 100, 'All']
 const RARITY_LEVELS = ['Very Common', 'Common', 'Uncommon', 'Rare', 'Very Rare']
@@ -110,17 +114,25 @@ function App() {
   const isPrewarmingRef = useRef(false)
   const prewarmGenRef = useRef(0)
 
-  // Guessing, Autocomplete & Identification Pop-up State
+  // Guessing, Autocomplete & Pop-up Modals State
   const [guess, setGuess] = useState('')
   const [showDropdown, setShowDropdown] = useState(false)
   const [highlightedIndex, setHighlightedIndex] = useState(0)
   const [roundResult, setRoundResult] = useState(null)
+  const [hideRevealBanner, setHideRevealBanner] = useState(false)
   const [showIdModal, setShowIdModal] = useState(false)
+  const [showReportModal, setShowReportModal] = useState(false)
+  const [reportedCurrentPhoto, setReportedCurrentPhoto] = useState(false)
 
-  // Set full-screen pixel background image
+  // Set CSS variable for full-screen pixel background (used by body::before)
   useEffect(() => {
     const bgUrl = `${import.meta.env.BASE_URL}background/pixel.png`
-    document.body.style.backgroundImage = `url("${bgUrl}")`
+    document.body.style.setProperty('--bg-image', `url("${bgUrl}")`)
+  }, [])
+
+  // Preload Cloudflare blacklist on startup
+  useEffect(() => {
+    loadBlacklist()
   }, [])
 
   // Load birds.json
@@ -191,7 +203,6 @@ function App() {
   const topUpStartupSnakeBuffer = useCallback(async () => {
     if (isPrewarmingRef.current || filteredSnakes.length === 0) return
 
-    // Discard any stale buffered snakes from a previous region toggle
     prewarmBufferRef.current = prewarmBufferRef.current.filter(
       (entry) => entry.regionKey === activeRegionKey
     )
@@ -210,7 +221,6 @@ function App() {
         prewarmBufferRef.current.length < SNAKE_BUFFER_SIZE &&
         attempts < 8
       ) {
-        // Abort immediately if the user toggled regions while fetching
         if (prewarmGenRef.current !== generation) return
 
         attempts += 1
@@ -225,7 +235,6 @@ function App() {
 
         const data = await fetchSnakeRoundData(randomSnake, snapshotRegions)
 
-        // Check again after await before pushing into buffer
         if (prewarmGenRef.current !== generation) return
 
         if (data && data.photoUrl) {
@@ -242,7 +251,6 @@ function App() {
       console.error('Background snake prewarm failed:', err)
     } finally {
       isPrewarmingRef.current = false
-      // If user toggled regions mid-fetch, kick off a fresh buffer load for the new selection
       if (prewarmGenRef.current !== generation) {
         topUpStartupSnakeBuffer()
       }
@@ -250,7 +258,6 @@ function App() {
   }, [filteredSnakes, snakeRegions, activeRegionKey])
 
   useEffect(() => {
-    // Increment generation on every region/filter change to cancel stale in-flight prewarms
     prewarmGenRef.current += 1
     prewarmBufferRef.current = prewarmBufferRef.current.filter(
       (entry) => entry.regionKey === activeRegionKey
@@ -260,18 +267,6 @@ function App() {
       topUpStartupSnakeBuffer()
     }
   }, [screen, filteredSnakes, activeRegionKey, topUpStartupSnakeBuffer])
-
-  useEffect(() => {
-    if (screen === 'start' && filteredSnakes.length > 0) {
-      // Discard any buffered snakes that no longer match updated region toggles
-      prewarmBufferRef.current = prewarmBufferRef.current.filter((entry) =>
-        filteredSnakes.some(
-          (s) => s.scientific_name === entry.snake.scientific_name
-        )
-      )
-      topUpStartupSnakeBuffer()
-    }
-  }, [screen, filteredSnakes, topUpStartupSnakeBuffer])
 
   const toggleRarity = (group, level) => {
     setStatusFilters((prev) => {
@@ -285,14 +280,18 @@ function App() {
 
   // Fetch & preload snake iNaturalist photo for a specific queue index
   const ensureSnakeRoundLoaded = useCallback(
-    async (queue, idx) => {
+    async (queue, idx, options = {}) => {
       if (idx >= queue.length) return
       if (fetchingIndicesRef.current.has(idx)) return
 
       fetchingIndicesRef.current.add(idx)
 
       try {
-        const data = await fetchSnakeRoundData(queue[idx].snake, snakeRegions)
+        const data = await fetchSnakeRoundData(
+          queue[idx].snake,
+          snakeRegions,
+          options
+        )
         if (data && data.photoUrl) {
           await preloadImageUrl(data.photoUrl)
           setSnakeMediaMap((prev) => ({ ...prev, [idx]: data }))
@@ -309,8 +308,7 @@ function App() {
     [snakeRegions]
   )
 
-  // Rolling 2-snake lookahead cache while playing:
-  // Keeps currentIndex + 1 and currentIndex + 2 preloaded as the user thinks
+  // Rolling 2-snake lookahead cache while playing
   useEffect(() => {
     if (screen !== 'playing' || gameCategory !== 'snake') return
     if (sessionQueue.length === 0) return
@@ -342,6 +340,7 @@ function App() {
   ])
 
   const startNewGame = () => {
+    setMenuOpen(false)
     if (gameCategory === 'bird') {
       if (filteredBirds.length === 0) return
 
@@ -360,7 +359,10 @@ function App() {
       setScore(0)
       setGuess('')
       setRoundResult(null)
+      setHideRevealBanner(false)
       setShowIdModal(false)
+      setShowReportModal(false)
+      setReportedCurrentPhoto(false)
       setScreen('playing')
     } else {
       if (filteredSnakes.length === 0) return
@@ -370,7 +372,6 @@ function App() {
           ? filteredSnakes.length
           : Math.min(maxRounds, filteredSnakes.length)
 
-      // Only consume pre-warmed snakes that match the active region selection
       const matchingWarmed = prewarmBufferRef.current.filter(
         (item) => item.regionKey === activeRegionKey
       )
@@ -406,7 +407,10 @@ function App() {
       setScore(0)
       setGuess('')
       setRoundResult(null)
+      setHideRevealBanner(false)
       setShowIdModal(false)
+      setShowReportModal(false)
+      setReportedCurrentPhoto(false)
       setScreen('playing')
     }
   }
@@ -421,8 +425,48 @@ function App() {
 
   const isSnakeLoading = gameCategory === 'snake' && !currentSnakeData
 
+  const handleRefreshPhoto = () => {
+    setMenuOpen(false)
+    if (!currentRound) return
+
+    if (gameCategory === 'bird') {
+      const photos = currentRound.bird.photos || []
+      if (photos.length <= 1) return
+
+      const alternatives = photos.filter(
+        (p) => p.local_path !== currentRound.photo.local_path
+      )
+      const pool = alternatives.length > 0 ? alternatives : photos
+      const nextPhoto = pool[Math.floor(Math.random() * pool.length)]
+
+      setSessionQueue((prev) =>
+        prev.map((item, idx) =>
+          idx === currentIndex ? { ...item, photo: nextPhoto } : item
+        )
+      )
+    } else {
+      const prevObsId = currentSnakeData?.observationId
+      setReportedCurrentPhoto(false)
+      fetchingIndicesRef.current.delete(currentIndex)
+      setSnakeMediaMap((prev) => {
+        const updated = { ...prev }
+        delete updated[currentIndex]
+        return updated
+      })
+      ensureSnakeRoundLoaded(
+        sessionQueue,
+        currentIndex,
+        prevObsId ? { excludeObservationIds: [prevObsId] } : {}
+      )
+    }
+  }
+
   const nextRound = () => {
+    setMenuOpen(false)
     setShowIdModal(false)
+    setShowReportModal(false)
+    setReportedCurrentPhoto(false)
+    setHideRevealBanner(false)
     setShowDropdown(false)
     setGuess('')
     setRoundResult(null)
@@ -496,6 +540,7 @@ function App() {
     if (isCorrect) {
       setScore((s) => s + 1)
     }
+    setHideRevealBanner(false)
     setRoundResult({ correct: isCorrect })
     setShowDropdown(false)
   }
@@ -534,6 +579,9 @@ function App() {
   const handleBack = () => {
     setMenuOpen(false)
     setShowIdModal(false)
+    setShowReportModal(false)
+    setReportedCurrentPhoto(false)
+    setHideRevealBanner(false)
     setScreen('start')
   }
 
@@ -608,12 +656,12 @@ function App() {
         <main className="game-card">
           <div className="start-header">
             <h2 className="start-title">
-              {gameCategory === 'bird' ? 'BORB!' : 'SNEK!'}
+              {gameCategory === 'bird' ? `${birds.length} birds here` : `${snakes.length} snakes here`}
             </h2>
             <p className="start-subtitle">
               {gameCategory === 'bird'
-                ? `(${birds.length} total species in database)`
-                : `(${snakes.length} Singapore & Borneo species in database)`}
+                ? `All bird photos taken from Francis Yap©`
+                : `All snake photos fetched from the iNaturalist API`}
             </p>
           </div>
 
@@ -844,20 +892,43 @@ function App() {
           {/* Hamburger Dropdown Menu */}
           {menuOpen && (
             <nav className="header-menu">
-              <button
-                type="button"
-                className="menu-item"
-                onClick={() => {}}
-              >
-                Settings
-              </button>
-              <button
-                type="button"
-                className="menu-item"
-                onClick={handleBack}
-              >
-                Quit to Title
-              </button>
+              {!roundResult ? (
+                <button
+                  type="button"
+                  className="menu-item"
+                  onClick={handleRefreshPhoto}
+                  disabled={gameCategory === 'snake' && isSnakeLoading}
+                >
+                  Refresh Photo
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className="menu-item"
+                  onClick={() => {
+                    setHideRevealBanner((prev) => !prev)
+                    setMenuOpen(false)
+                  }}
+                >
+                  {hideRevealBanner ? 'Show Info Box' : 'Hide Info Box'}
+                </button>
+              )}
+
+              {gameCategory === 'snake' && currentSnakeData?.observationId && (
+                <button
+                  type="button"
+                  className="menu-item"
+                  onClick={() => {
+                    setMenuOpen(false)
+                    setShowReportModal(true)
+                  }}
+                >
+                  {reportedCurrentPhoto
+                    ? 'Photo Reported ✓'
+                    : 'Report Invalid Photo'}
+                </button>
+              )}
+
             </nav>
           )}
 
@@ -913,7 +984,7 @@ function App() {
             )}
 
             {/* Answer Reveal Banner */}
-            {roundResult && (
+            {roundResult && !hideRevealBanner && (
               <div className="reveal-banner">
                 <div className="reveal-details">
                   <div className="reveal-status-row">
@@ -965,7 +1036,6 @@ function App() {
                         <span className="reveal-local-status">
                           {currentRound.snake.countries.join(' • ')}
                         </span>
-                       
                       </div>
                     </>
                   )}
@@ -1068,6 +1138,74 @@ function App() {
                 </div>
               </div>
             )}
+
+            {/* Report Invalid Photo Modal */}
+            {showReportModal && gameCategory === 'snake' && currentSnakeData && (
+              <div
+                className="id-modal-backdrop"
+                onClick={() => setShowReportModal(false)}
+              >
+                <div
+                  className="id-modal"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className="id-modal-header">
+                    <span>Report Invalid Photo</span>
+                    <button
+                      type="button"
+                      className="id-modal-close"
+                      onClick={() => setShowReportModal(false)}
+                    >
+                      ✕
+                    </button>
+                  </div>
+
+                  <div className="id-modal-body">
+                    <div className="id-modal-meta">
+                      Observation #{currentSnakeData.observationId} •{' '}
+                      {currentRound.snake.scientific_name}
+                    </div>
+
+                    {reportedCurrentPhoto ? (
+                      <p className="report-confirmation">
+                        Blacklisted! This photo will be skipped in future rounds.
+                      </p>
+                    ) : (
+                      <div className="report-reason-list">
+                        {[
+                          'Roadkill / Dead',
+                          'Predation / Feeding',
+                          'Multiple Subjects',
+                          'Other / Unidentifiable',
+                        ].map((reason) => (
+                          <button
+                            key={reason}
+                            type="button"
+                            className="choice-tile choice-tile--compact"
+                            onClick={() => {
+                              addToBlacklist({
+                                observationId: currentSnakeData.observationId,
+                                scientificName: currentRound.snake.scientific_name,
+                                reason,
+                              })
+                              prewarmBufferRef.current =
+                                prewarmBufferRef.current.filter(
+                                  (item) =>
+                                    item.data?.observationId !==
+                                    currentSnakeData.observationId
+                                )
+                              setReportedCurrentPhoto(true)
+                            }}
+                          >
+                            {reason}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
           </section>
 
           {/* 3. BOTTOM CONTROLS BOX */}
@@ -1141,6 +1279,7 @@ function App() {
                     className="primary-button"
                     disabled={gameCategory === 'snake' && !currentSnakeData}
                     onClick={() => {
+                      setHideRevealBanner(false)
                       setRoundResult({ correct: false })
                       setShowDropdown(false)
                     }}

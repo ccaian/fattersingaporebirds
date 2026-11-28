@@ -5,7 +5,7 @@
 }
 
 html {
-  background-color: white;
+  background-color: #2e6f40;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -13,21 +13,35 @@ html,
 body,
 #root {
   width: 100%;
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 body {
-  background-color: white;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-  background-attachment: fixed;
-  image-rendering: pixelated;
+  background-color: transparent;
   color: #000000;
   font-family: system-ui, -apple-system, sans-serif;
 }
 
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100lvh;
+  background-color: #2e6f40;
+  background-image: var(--bg-image);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  image-rendering: pixelated;
+  pointer-events: none;
+  z-index: 0;
+}
+
 #root {
+  position: relative;
+  z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -391,7 +405,7 @@ body {
   position: absolute;
   top: calc(0.75rem + 56px);
   right: 0.75rem;
-  width: 190px;
+  width: 210px;
   background-color: #ffffff;
   border: 2px solid #000000;
   box-shadow: 4px 4px 0px #000000;
@@ -575,11 +589,11 @@ body {
   margin-top: 0;
 }
 
-.reveal-credit {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.68rem;
-  color: #475569;
-  font-weight: 600;
+.reveal-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-shrink: 0;
 }
 
 .info-icon-btn {
@@ -603,7 +617,16 @@ body {
   background-color: #ffff00;
 }
 
-/* Identification Field Guide Modal Pop-up */
+.report-icon-btn:hover {
+  background-color: #fecaca;
+}
+
+.report-icon-btn--reported {
+  background-color: #000000;
+  color: #ffff00;
+}
+
+/* Identification Field Guide & Report Modals */
 
 .id-modal-backdrop {
   position: absolute;
@@ -663,7 +686,7 @@ body {
   padding: 0.85rem;
   font-size: 0.85rem;
   line-height: 1.45;
-  max-height: 240px;
+  max-height: 260px;
   overflow-y: auto;
 }
 
@@ -691,6 +714,27 @@ body {
   color: #1e293b;
 }
 
+.report-reason-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-top: 0.4rem;
+}
+
+.report-confirmation {
+  font-weight: 700;
+  color: #15803d;
+  padding: 0.4rem 0;
+}
+
+.report-export-row {
+  margin-top: 0.75rem;
+  padding-top: 0.55rem;
+  border-top: 1px dashed #94a3b8;
+  display: flex;
+  justify-content: flex-end;
+}
+
 .inat-link {
   display: inline-block;
   margin-top: 0.65rem;
@@ -702,6 +746,7 @@ body {
   border: 1.5px solid #000000;
   padding: 0.25rem 0.5rem;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .inat-link:hover {
@@ -732,6 +777,7 @@ body {
   padding: 0.6rem 0.75rem;
   border: 2px solid #000000;
   border-radius: 0;
+  font-family: inherit;
   font-size: 16px;
   color: #000000;
   background-color: #ffffff;
@@ -775,7 +821,6 @@ body {
   font-weight: 700;
 }
 
-/* Keep scientific name softer even when the yellow autocomplete row is highlighted */
 .autocomplete-item:hover .species-sci-name,
 .autocomplete-item--active .species-sci-name {
   font-weight: 400;
@@ -826,7 +871,6 @@ body {
   opacity: 0.78;
 }
 
-/* Ensure single-name scientific mode also italicizes cleanly */
 .header-title,
 .reveal-bird-name,
 .id-modal-meta {
